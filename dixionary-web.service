@@ -7,7 +7,7 @@ User=root
 Group=www-data
 WorkingDirectory=/var/www/dixionary
 Enviroment="PATH=/var/www/dixionary/venv/bin"
-ExecStart=/var/www/dixionary/venv/bin/gunicorn -b unix:dixionary.sock --reload --access-logfile dixionary.log wsgi:app
+ExecStart=/var/www/dixionary/venv/bin/gunicorn --bind unix:dixionary.sock --reload --access-logfile /var/log/dixionary-web.log wsgi:app
 
 [Install]
 WantedBy=muti-user.target
