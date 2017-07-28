@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% set active_page = 'dixionary' %}
+{% block ogtitle %}Dixionary list{% endblock %}
+{% block ogdescription %}This page lists all vords in the dixionary{% endblock %}
+{% block title %}Dixionary{% endblock %}
+{% block herocontent %}
+<h1 class="title">Dixionary List</h1>
+<h2 class="subtitle">Each & Ewery vord in the Dixionary</h2>
+<h3>#ANTIVAXXERS</h3>
+{% endblock %}
+{% block body %}
+<section class="section">
+    <div class="container has-text-centered">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Scammer</th>
+                    <th>English</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vord in dixionary %}
+                <tr>
+                    <th>{{ vord.vord }}</th>
+                    <th>{{ vord.word }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
+
