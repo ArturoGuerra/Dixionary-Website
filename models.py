@@ -1,17 +1,17 @@
 import pymysql
 from peewee import *
 from playhouse.shortcuts import RetryOperationalError
-
+from config import Config
 class MyRetryDB(RetryOperationalError, MySQLDatabase):
     pass
-
+cfg = Config()
 try:
     my_db = MyRetryDB(
-        "dixionarybot",
-        host="mysqldb.local",
+        cfg.dbname,
+        host=cfg.dbhost,
         port=3306,
-        user="dixionary",
-        password="D!x!0nary",
+        user=cfg.dbuser,
+        password=cfg.dbpasswd,
         charset = 'utf8mb4')
 except Exception as e:
     my_db = None

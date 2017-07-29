@@ -7,6 +7,7 @@
         <link rel="icon" type="image/png" href="/static/assets/webicon.jpeg"  size="10x10">
         <link rel="stylesheet" href="/static/css/bulma.css">
         <link rel="stylesheet" href="/static/css/hero.css">
+        <link rel="stylesheet" href="/static/css/custombulma.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <meta propery="og:title" content="{% block ogtitle %}{% endblock %}">
         <meta propery="og:type" content="website">
@@ -27,25 +28,19 @@
                     <img src="{{ url_for('static', filename='assets/webicon.jpeg') }}" style="border-radius: 60%; display: block; height: auto; width: auto;">
                     <strong>&nbsp; Dixionary</strong>
                 </span>
-                <div class="navbar-burger burger" data-target="NavBarDesktop">
+                <div class="navbar-burger burger" data-target="nav-items">
                   <span></span>
                   <span></span>
                   <span></span>
                 </div>
             </div>
-            <div class="navbar-menu is-hidden-touch">
-                <div class="navbar-item navbar-end">
-                    <div class="tabs">
-                        <ul>
-                            {% for href, id, caption in navbar_items %}
-                            <li id="{{ id }}" class="{% if id == active_page %}is-active{% endif %}">
-                                <a href="{{ href|e }}">
-                                    <span>{{ caption }}</span>
-                                </a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+            <div class="navbar-menu" id='nav-items'>
+                <div class="navbar-end">
+                   {% for href, id, caption in navbar_items %}
+                   <a id="{{ id }}" class="navbar-item is-tab {% if id == active_page %}is-active{% endif %}" href="{{ href|e }}">
+                        <span>{{ caption }}</span>
+                    </a>
+                   {% endfor %}
                  </div>
             </div>
             <script src="{{ url_for('static', filename='scripts/burger.js') }}"></script>

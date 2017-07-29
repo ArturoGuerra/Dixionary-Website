@@ -2,10 +2,11 @@ import discord
 import requests
 from flask import *
 from models import *
-
+from config import Config
+cfg = Config()
 client = discord.Client()
 app = Flask(__name__)
-apikey = 'c771990ce1fd4bc583f765c014d6fece'
+apikey = cfg.dixionaryapi
 
 class DixionaryVords():
     def __init__(self, vord, word):

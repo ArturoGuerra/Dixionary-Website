@@ -1,0 +1,6 @@
+{"token": "Discord Token",
+"host": "Database Host",
+"dbpasswd": "Database Password",
+"dbname": "Database Name",
+"dbuser": "Database User",
+"dixionaryapi": "Api Key"}

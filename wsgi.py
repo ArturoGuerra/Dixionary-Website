@@ -1,6 +1,6 @@
-from dixionary import app, client
+from dixionary import app, client, config
 from threading import Thread
-TOKEN = "MjY3MzQwMzY1MzQ4OTk1MDcy.DFBNtA.cRJkFF7nkBu0zL2-fjAIY61JmFE"
+TOKEN = config.token
 t = Thread(target=client.run, args=(TOKEN,))
 t.start()
 
