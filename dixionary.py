@@ -19,7 +19,7 @@ def index():
 
 @app.route('/dixionary')
 def dixionary():
-    request = requests.get("http://api.dixionary.com:3500/dixionary/vords", data=apikey)
+    request = requests.get("http://api.dixionary.com/dixionary/vords", data=apikey)
     dixionary_dict = request.json()
     dix = list()
     for vord in dixionary_dict:
