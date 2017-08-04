@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<%- include partials/headerInfo.ejs %>
+
+<header>
+    <nav class="navbar has-shadow">
+        <div class="navbar-brand">
+            <span class="navbar-item">
+                <img src="/static/assets/webicon.jpeg" style="border-radius: 60%; display: block; height: auto; width: auto;">
+                    <strong>&nbsp; Dixionary</strong>
+            </span>
+            <div class="navbar-burger burger" data-target="nav-items">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="nav-items">
+            <div class="navbar-end">
+                <a id="home" class="navbar-item is-tab is-active" href="/">
+                    <span>Home</span>
+                </a>
+                <a id="dixionary" class="navbar-item is-tab " href="/dixionary">
+                    <span>Dixionary</span>
+                </a>
+                <a id="status" class="navbar-item is-tab " href="/status">
+                    <span>Status</span>
+                </a>
+                <a id="bot" class="navbar-item is-tab " href="/bot">
+                    <span>Bot</span>
+                </a>
+            </div>
+        </div>
+        <script src="/static/scripts/burger.js"></script>
+    </nav>
+</header>
+
+<%- include partials/hero.ejs %>
+
+<section class="section">
+    <div class="container has-text-centered">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Scammer</th>
+                <th>English</th>
+            </tr>
+            </thead>
+            <tbody id="scammerTable">
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    window.onload = function () {
+        var xhrTcdgProjects = new XMLHttpRequest();
+        xhrTcdgProjects.overrideMimeType("application/json");
+        xhrTcdgProjects.open("GET", "./assets/data.json");
+        xhrTcdgProjects.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200){
+
+                let objTcdgProjects = JSON.parse(xhrTcdgProjects.responseText);
+
+                for (var x = 0; x < objTcdgProjects.length; x++){
+
+                    writeProjects(objTcdgProjects[x].english, objTcdgProjects[x].scammer);
+                }
+            }
+        };
+        xhrTcdgProjects.send();
+    };
+
+    function writeProjects(scammer, english) {
+        var parent = document.getElementById('scammerTable');
+        var item = document.createElement('tr');
+
+        var scammerTxt = document.createElement('td');
+        var stxt = document.createTextNode(scammer);
+        scammerTxt.appendChild(stxt);
+        item.appendChild(scammerTxt);
+
+        var englishTxt = document.createElement('td');
+        var etxt = document.createTextNode(english);
+        scammerTxt.appendChild(etxt);
+        item.appendChild(englishTxt);
+
+        parent.appendChild(englishTxt);
+    }
+</script>
+
+<%- include partials/footer.ejs %>
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "dixionary-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArturoGuerra/Dixionary-Website.git"
+  },
+  "author": "XeliteXirish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArturoGuerra/Dixionary-Website/issues"
+  },
+  "homepage": "https://github.com/ArturoGuerra/Dixionary-Website#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cluster": "^0.7.7",
+    "colors": "^1.1.2",
+    "cookie-session": "^1.3.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "express-minify": "^0.2.0",
+    "express-rate-limit": "^2.9.0",
+    "express-session": "^1.15.5",
+    "mkdirp": "latest",
+    "morgan": "^1.8.2",
+    "mysql": "^2.14.1",
+    "passport": "^0.3.2",
+    "passport-discord": "^0.1.2",
+    "requestify": "^0.2.5",
+    "serve-favicon": "^2.4.3",
+    "winston": "^2.3.1"
+  }
+}

@@ -1,4 +1,7 @@
-__pycache__
+.DS_Store
+*.log
+node_modules/
+.idea/
 config.json
-sslcerts
-venv
+src/config.json
+/config.json
