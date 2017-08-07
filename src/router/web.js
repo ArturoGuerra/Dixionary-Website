@@ -6,7 +6,7 @@ const config = dixionary.config;
 const oauth = require('./auth.js');
 
 //Router middleware
-const scope = ['guilds', 'identify', 'email'];
+const scope = ['guilds', 'identify'];
 const DebugcallbackURL = 'http://aws.arturonet.com:8080/login/callback';
 const callbackURL = 'https://www.dixionary.com/login/callback';
 
@@ -43,33 +43,31 @@ router.use((req, res, next) => {
     next();
 });
 router.get('/', (req, res) => {
-    req.args.hero = {title: "Dixionary Website", subtitle: "Vill correct each & eweryone", extra: "Global warming is a hoax"};
     res.render('pages/index', req.args);
 });
 
-router.get('/dixionary', (req, res) => {
-    req.args.hero = {title: "Dixonary List", subtitle: "Each & Ewery vord in the dixionary", extra: "#ANTIVAXXERS"}
+router.get('/dixionary', checkAuth, (req, res) => {
     res.render('pages/dixionary', req.args);
 });
 
 router.get('/search', checkAuth, (req, res) => {
-    req.args.hero = {title: "Dixionary Search", subtitle: "Each and ewery vord definition", extra: "#MAKEAMERICAGREATAGAIN"}
     res.render('pages/search', req.args)
 });
 
+router.get('/translate', checkAuth, (req, res) => {
+    res.render('pages/translate', req.args);
+});
+
 router.get('/apinfo', checkAuth, (req, res) => {
-    req.args.hero = {title: "Dixionary API Docs", subtitle: "Best api in the vorld", extra: "#HEILHITLER"}
     res.render('pages/apinfo', req.args);
 });
 
-router.get(['/servers', '/servers/:server'], (req, res) => {
-    req.args.hero = {title: "Dixionary Servers"};
-    res.render('pages/servers', req.args);
+router.get('/status', (req, res) => {
+    res.render('pages/status', req.args);
 });
 
-router.get('/status', (req, res) => {
-    req.args.hero = {title: "Dixionary Status", subtitle: "Please vork", extra: "Medium rare chicken"}
-    res.render('pages/status', req.args);
+router.get(['/servers', '/servers/:server'], (req, res) => {
+    res.render('pages/servers', req.args);
 });
 
 router.get('/dashboard/:page', checkAuth, (req, res) => {
@@ -87,7 +85,7 @@ router.use((req, res) => {
 
 //500
 function error_500(err, req, res, next) {
-    req.args.hero = {title: "500 Internal Serwer Error", subtitle: error.message, extra: ""}
+    req.args.error = error.message;
     res.render('errors/custom_500', req.args);
 }
 
@@ -105,7 +103,7 @@ function defaultArgs(req, res) {
     var args = {};
     args.navbar_items = [
     {href: '/', id: "Home", content: "Home"},
-    {href: "dixionary", id: "dixionary", content: "Dixionary"},
+    {href: "/dixionary", id: "dixionary", content: "Dixionary"},
     {href: "/search", id: "search", content: "Search"},
     {href: "/translate", id: "translate", content: "Translate"},
     {href: "/apinfo", id: "apinfo", content: "API Info"},

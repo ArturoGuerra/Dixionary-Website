@@ -6,7 +6,10 @@
     </head>
     <body>
         <%- include ../partials/header %>
-        <%- include ../partials/errorhero %>
+        <%- include ../partials/errorhero/start %>
+        <h1 class="title">500 Internal Serwer Error</h1>
+        <h2 class="subtile"><%= error %><h2>
+        <%- include ../partials/errorhero/end %>
         <%- include ../partials/footer %>
     </body>
 </html>
