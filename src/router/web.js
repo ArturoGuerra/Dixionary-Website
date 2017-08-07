@@ -12,6 +12,7 @@ const callbackURL = 'https://www.dixionary.com/login/callback';
 
 router.use(oauth.initialize());
 router.use(oauth.session());
+router.use(error_500);
 router.use((req, res, next) => {
     req.session.redirect = req.path || '/';
     if (req.isAuthenticated()) {
@@ -78,11 +79,17 @@ router.get('/dashboard/:page', checkAuth, (req, res) => {
 router.get('/dashboard/:page/push', checkAuth);
 
 //Error Handling
+//404
 router.use((req, res) => {
     req.args.hero = {title: "404 CHILL NOT FOUND", subtitle: "RIP DADDY DEV", extra: "Shit goes here"}
     res.render('errors/custom_404', req.args);
 });
 
+//500
+function error_500(err, req, res, next) {
+    req.args.hero = {title: "500 Internal Serwer Error", subtitle: error.message, extra: ""}
+    res.render('errors/custom_500', req.args);
+}
 
 //Helper functions
 function checkAuth(req, res, next) {
@@ -100,6 +107,7 @@ function defaultArgs(req, res) {
     {href: '/', id: "Home", content: "Home"},
     {href: "dixionary", id: "dixionary", content: "Dixionary"},
     {href: "/search", id: "search", content: "Search"},
+    {href: "/translate", id: "translate", content: "Translate"},
     {href: "/apinfo", id: "apinfo", content: "API Info"},
     {href: "/status", id: "status", content: "Status"},
     {href: "/servers", id: "servers", content: "Servers"},
