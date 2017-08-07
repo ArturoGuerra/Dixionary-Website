@@ -7,7 +7,8 @@ const oauth = require('./auth.js');
 
 //Router middleware
 const scope = ['guilds', 'identify', 'email'];
-const callbackURL = 'http://aws.arturonet.com:8080/login/callback';
+const DebugcallbackURL = 'http://aws.arturonet.com:8080/login/callback';
+const callbackURL = 'https://www.dixionary.com/login/callback';
 
 router.use(oauth.initialize());
 router.use(oauth.session());

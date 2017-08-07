@@ -1,9 +1,8 @@
 function fetchProjects() {
     var request = new XMLHttpRequest();
     var URL = "https://www.dixionary.com/api/fetch";
-    var testURL = "http://aws.arturonet.com:8080/api/fetch";
     request.overrideMimeType("application/json");
-    request.open("GET", testURL);
+    request.open("GET", URL);
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let responce = JSON.parse(request.responseText);
