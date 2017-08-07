@@ -1,0 +1,10 @@
+
+<% var navbar_items = [ \
+{href: "/", id: "home", content: "Home"}, \
+{href: "/dixionary", id: "dixionary", content: "Dixionary"},
+{href: "/search", id: "search", content: "Search"}, \
+{href: "/apinfo", id: "apinfo", content: "API Info"}, \
+{href: "/status", id: "status", content: "Status"} \
+{href: "/servers", id: "servers", content: "Servers"}, \
+{href: "/dashboard/main", id: "dashboard", content: "Dashboard"} \
+] %>

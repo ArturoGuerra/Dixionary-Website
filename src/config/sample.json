@@ -1,0 +1,9 @@
+{"secret1": "Cookie secret 1",
+"secret2": "Cookie secret 2",
+"token": "Bot Token",
+"clientid" : "Discord Client ID",
+"clientsecret": "Discord Client Secret",
+"database": "MySQL Database",
+"dbuser": "Database Username",
+"dbpasswd": "Database Password",
+"dbhost": "Database Host"}
