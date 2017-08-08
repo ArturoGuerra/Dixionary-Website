@@ -14,9 +14,12 @@ const app = express();
 const dixionaryapi = require('./router/api.js');
 const dixionaryweb = require('./router/web.js');
 const cookiesession = cookieSession({name: "websession", keys: [config.secret1, config.secret2], maxAge: 24 * 60 * 60 * 1000});
+const rclient = redis.createClient();
+
 
 app.use(bodyParser.urlencoded({extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(compression());
 app.use(minify());
 app.use('/static', express.static(path.join(__dirname, "static")));
@@ -45,5 +48,5 @@ function startServer() {
 if (require.main === module) {
     startServer();
 }
-
+exports.rclient = rclient;
 exports.app = app;

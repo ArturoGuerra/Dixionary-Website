@@ -9,6 +9,27 @@
         <%- include ../partials/smallhero/start %>
         <h1 class="title">Dixionary Translate</h1>
         <%- include ../partials/smallhero/end %>
+        <section class="hero hero-body">
+            <br>
+            <h3 class="title">Scammer Translate</h3>
+            <div class="field">
+                <div class="control has-icons-left has-icons-right">
+                    <input id='textInput' class="input is-info" type="text" placeholder="Input"/>
+                    <span id='successful' style="display:none;" class="icon is-small is-right">
+                        <i class="fa fa-check"></i>
+                    </span>
+                <div>
+            </div>
+            <br>
+            <div>
+                <div class="control">
+                    <button onclick="translateText()" class="button is-primary">
+                        <i class="fa fa-hdd-o fa-fw" aria-hidden="true"></i>Translate
+                    </button>
+                </div>
+            </div>
+        </section>
+        <script src='/static/scripts/translate.js'></script>
         <%- include ../partials/footer %>
     </body>
 </html>

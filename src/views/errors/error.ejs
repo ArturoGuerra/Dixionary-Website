@@ -2,15 +2,14 @@
 <html>
     <head>
         <%- include ../partials/head %>
-        <title>500 Madarchod</title>
+        <title><%= err.status %> Madarchods</title>
     </head>
     <body>
         <%- include ../partials/header %>
         <%- include ../partials/errorhero/start %>
-        <h1 class="title">500 Internal Serwer Error</h1>
-        <h2 class="subtile"><%= error %><h2>
+        <h1 class='title'><%= err.status %></h1>
+        <h2 class='subtitle'><%= err.message %></h2>
         <%- include ../partials/errorhero/end %>
         <%- include ../partials/footer %>
     </body>
 </html>
-

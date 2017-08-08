@@ -4,16 +4,18 @@ const router = new express.Router();
 const dixionary = require('../dixionaryweb.js');
 const config = dixionary.config;
 const oauth = require('./auth.js');
+const dmodules = require('../modules/discordapp.js');
 
 //Router middleware
-const scope = ['guilds', 'identify'];
-const DebugcallbackURL = 'http://aws.arturonet.com:8080/login/callback';
-const callbackURL = 'https://www.dixionary.com/login/callback';
+const scope = [
+    'identify',
+    'guilds'
+];
 
 router.use(oauth.initialize());
 router.use(oauth.session());
-router.use(error_500);
 router.use((req, res, next) => {
+    req.args = defaultArgs(req, res);
     req.session.redirect = req.path || '/';
     if (req.isAuthenticated()) {
         console.log(`Authenticated User: ${req.user.username}`);
@@ -30,7 +32,7 @@ router.get('/login/callback', oauth.authenticate('discord', {failureRedirect: '/
     res.redirect('/');
 });
 
-router.get('/login', oauth.authenticate('discord', {scope: scope, callbackURL: callbackURL}), (req, res) => {});
+router.get('/login', oauth.authenticate('discord', {scope: scope}), (req, res) => {});
 
 router.get('/logout', checkAuth, (req, res) => {
     req.logout();
@@ -38,56 +40,58 @@ router.get('/logout', checkAuth, (req, res) => {
 });
 
 //Front end routes
-router.use((req, res, next) => {
-    req.args = defaultArgs(req, res);
-    next();
-});
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     res.render('pages/index', req.args);
 });
 
-router.get('/dixionary', checkAuth, (req, res) => {
+router.get('/dixionary', (req, res, next) => {
     res.render('pages/dixionary', req.args);
 });
 
-router.get('/search', checkAuth, (req, res) => {
+router.get('/search', checkAuth, (req, res, next) => {
     res.render('pages/search', req.args)
 });
 
-router.get('/translate', checkAuth, (req, res) => {
+router.get('/translate', (req, res, next) => {
     res.render('pages/translate', req.args);
 });
 
-router.get('/apinfo', checkAuth, (req, res) => {
+router.get('/apinfo', checkAuth, (req, res, next) => {
     res.render('pages/apinfo', req.args);
 });
 
-router.get('/status', (req, res) => {
+router.get('/status', (req, res, next) => {
     res.render('pages/status', req.args);
 });
 
-router.get(['/servers', '/servers/:server'], (req, res) => {
-    res.render('pages/servers', req.args);
+router.get(['/servers', '/servers/:server'], (req, res, next) => {
+    dmodules.guilds(req, res, next);
 });
 
-router.get('/dashboard/:page', checkAuth, (req, res) => {
+router.get('/dashboard/:page', checkAuth, (req, res, next) => {
     res.send("Authenticated");
 });
 
 router.get('/dashboard/:page/push', checkAuth);
 
 //Error Handling
-//404
-router.use((req, res) => {
-    req.args.hero = {title: "404 CHILL NOT FOUND", subtitle: "RIP DADDY DEV", extra: "Shit goes here"}
-    res.render('errors/custom_404', req.args);
+router.use((req, res, next) => {
+    res.render('errors/404', req.args);
 });
 
-//500
-function error_500(err, req, res, next) {
-    req.args.error = error.message;
-    res.render('errors/custom_500', req.args);
-}
+router.use((err, req, res, next) => {
+    console.error(err);
+    if (!err.status) {
+        err.status = 500;
+    }
+    console.error(`${err.status} ${err.message} ${err.stack}`)
+    req.args.err = err;
+    if (err.status == 500) {
+        res.status(500).render("errors/500", req.args);
+    } else {
+        res.status(err.status).render('errors/error', req.args);
+    }
+});
 
 //Helper functions
 function checkAuth(req, res, next) {

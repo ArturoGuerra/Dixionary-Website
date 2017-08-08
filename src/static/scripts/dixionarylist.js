@@ -3,7 +3,7 @@ function fetchProjects() {
     var URL = "https://www.dixionary.com/api/fetch";
     var indexs = 0;
     request.overrideMimeType("application/json");
-    request.open("GET", URL);
+    request.open("GET", URL, true);
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let responce = JSON.parse(request.responseText);
