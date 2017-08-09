@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include ../partials/head %>
+        <link rel='stylesheet' href='/static/css/animate.css'>
+        <title>Dixionary - Dixionary's Website</title>
+    </head>
+    <body>
+        <%- include ../partials/header %>
+        <%- include ../partials/hero/start %>
+        <h1 class=title>Dixonary List</h1>
+        <h2 class=subtitle>Each & Ewery vord in the dixionary</h2>
+        <h3>#ANTIVAXXERS</h3>
+        <%- include ../partials/hero/end %>
+        <section class="section">
+            <div id='spinner' class="container">
+                <div style="margin: auto;" class="spinner"></div>
+                <br>
+            </div>
+            <div id="scammerContainer" style="display:none;" class="container has-text-centered">
+                <table class="table is-fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Scammer</th>
+                        <th>English</th>
+                    </tr>
+                    </thead>
+                    <tbody id="scammerTable">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <script src='/static/scripts/dixionarylist.js'></script>
+        <%- include ../partials/footer %>
+    </body>
+</html>

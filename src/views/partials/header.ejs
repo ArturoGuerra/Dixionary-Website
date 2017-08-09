@@ -1,0 +1,63 @@
+<header>
+    <nav class="navbar has-shadow">
+        <div class="navbar-brand">
+            <span class="navbar-item">
+                <img src="/static/assets/webicon.jpeg" style="border-radius: 60%; display: block; height: auto; width: auto;">
+                <strong>&nbsp; Dixionary</strong>
+            </span>
+            <div class="navbar-burger burger" data-target="nav-items">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+        </div>
+        <div class="is-hidden-touch navbar-menu">
+            <div class="navbar-start">
+                <% navbar_items.forEach(function(item) { %>
+                <a id="<%= item.id %>" href="<%= item.href %>" class="navbar-item is-tab">
+                    <span><%= item.content %></span>
+                </a>
+               <% }) %>
+            </div>
+            <div class="is-hidden-touch navbar-end">
+                <% if (locals.user) { %>
+                <span class="navbar-item">
+                    <span><%= user.username %></span>
+                </span>
+                <a href="/logout" class="navbar-item">
+                    <span>Logout</span>
+                </a>
+                <% } else { %>
+                <a href="/login" class="navbar-item">
+                    <span>Login</span>
+                </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="is-hidden-desktop navbar-menu" id='nav-items'>
+            <div class="navbar-start">
+                <% navbar_items.forEach(function(item) { %>
+                <a href="<%= item.href %>" class="navbar-item">
+                    <span><%= item.content %></span>
+                </a>
+               <% }) %>
+            </div>
+            <div class="navbar-end">
+                <% if (locals.user) { %>
+                <span class="navbar-item">
+                    <span><%= user.username %></span>
+                </span>
+                <a href="/logout" class="navbar-item">
+                    <span>Logout</span>
+                </a>
+                <% } else { %>
+                <a href="/login" class="navbar-item">
+                    <span>Login</span>
+                </a>
+                <% } %>
+            </div>
+        </div>
+        <script src="/static/scripts/burger.js"></script>
+        <script src="/static/scripts/currentpage.js"></script>
+    </nav>
+</header>

@@ -1,0 +1,35 @@
+{
+  "name": "dixionary",
+  "version": "1.0.0",
+  "description": "Dixionary Website",
+  "main": "dixionaryweb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ArturoGuerra/Dixionary-Website.git"
+  },
+  "author": "Arturo Guerra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArturoGuerra/Dixionary-Website/issues"
+  },
+  "homepage": "https://github.com/ArturoGuerra/Dixionary-Website#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
+    "cookie-session": "^1.3.0",
+    "discord.js": "^11.1.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "express-minify": "^0.2.0",
+    "express-rate-limit": "^2.9.0",
+    "express-redis-cache": "^1.0.0",
+    "http": "0.0.0",
+    "passport": "^0.3.2",
+    "passport-discord": "^0.1.2",
+    "prompt": "^1.0.0",
+    "requestify": "^0.2.5"
+  }
+}
