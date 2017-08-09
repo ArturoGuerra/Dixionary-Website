@@ -5,7 +5,7 @@ const dclient = new discord.Client();
 const config = dixionary.config;
 const app = dixionary.app;
 const rclient = dixionary.rclient;
-dclient.login("MjY3MzQwMzY1MzQ4OTk1MDcy.DGrNfg.Ujl6fMnDkOF_uLdVsETUCrmKSP0")
+dclient.login(config.token)
 exports.guilds = function(req, res, next) {
     var guilds = [];
     var cache = 1;

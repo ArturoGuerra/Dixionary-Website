@@ -18,7 +18,7 @@ router.get('/fetch', (req, res, next) => {
      });
 });
 
-router.use('/translate', (req, res, next) => {
+router.post('/translate', (req, res, next) => {
     cache.route();
     var indexs = 0;
     try {
@@ -35,6 +35,7 @@ router.use('/translate', (req, res, next) => {
                 if (original[x] == corrected[y].english) {
                     string.push(corrected[y].scammer);
                     indexs++
+                    break;
                 }
             }
         }
@@ -44,6 +45,36 @@ router.use('/translate', (req, res, next) => {
     .catch(console.log);
 });
 
-router.get('/search', (req, res, next) => {});
+router.post('/search', (req, res, next) => {
+    cache.route();
+    var indexs = 0;
+    try {
+        var original = req.body.message.split(' ')[0];
+        console.log(original);
+    } catch (err) {
+        res.status(400).send(err.message);
+    }
+    requestify.request("https://mashape-community-urban-dictionary.p.mashape.com/define?term=" + original, {
+        method: 'GET',
+        headers: {
+            "X-Mashape-Key": "ag4I5ZUGstmshdijUSKIyrfQ9rG8p1GlEYnjsng2XYtDfJGDFw",
+            "Accept": "text/plain"
+        }
+    }).then(responce => {
+        let definition = responce.getBody().list[0].definition;
+        console.log(`Definition: ${definition}`);
+        requestify.post('https://www.dixionary.com/api/translate', {message: definition}).then(result => {
+            let body = JSON.parse(result.body);
+            let message = body.join(' ').replace(/'/g, "");
+            console.log(message);
+            res.send(message);
+        }).catch(err => {
+            res.status(400).send(err.message)
+        });
+    }).catch(err => {res.status(400).send(err.message)});
+});
+
+
+
 
 module.exports = router

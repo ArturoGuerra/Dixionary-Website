@@ -1,13 +1,14 @@
-function translateText() {
+function defineText() {
+    document.getElementById("textOutput").innerHTML = '';
     var etoggle = document.getElementById("successful");
     etoggle.setAttribute("style", "display:none;")
     var element = document.getElementById("textInput");
     var request = new XMLHttpRequest();
-    var URL = "https://www.dixionary.com/api/translate";
+    var URL = "https://www.dixionary.com/api/search";
     request.onreadystatechange = function() {
-            let responce = JSON.parse(request.responseText);
+            let responce = request.responseText;
             console.log(responce);
-            document.getElementById("textInput").value = responce.join(' ');
+            document.getElementById("textOutput").innerHTML = responce;
             etoggle.removeAttribute("style");
     }
     var jsonStr = JSON.stringify({
