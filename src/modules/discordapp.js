@@ -6,7 +6,8 @@ const config = dixionary.config;
 const app = dixionary.app;
 const rclient = dixionary.rclient;
 dclient.login(config.token)
-exports.guilds = function(req, res, next) {
+ 
+exports.guilds = function(callback) {
     var guilds = [];
     var cache = 1;
     var guild_count = 0;
@@ -15,9 +16,15 @@ exports.guilds = function(req, res, next) {
         guilds.push({id: guild.id, name: guild.name, owner: o, members: guild.memberCount, region: guild.region });
         guild_count++;
         if (guild_count == array.length) {
-            req.args.guilds = guilds;
-            res.render('pages/servers', req.args);
+            callback(guilds);
         }
     });
 }
 
+exports.selectguild = function(guildid, callback) {
+    dclient.guilds.array().forEach(guild => {
+        if (guild.id == guildid) {
+            callback(guild);
+        }
+    });
+}

@@ -6,4 +6,5 @@
 "database": "MySQL Database",
 "dbuser": "Database Username",
 "dbpasswd": "Database Password",
-"dbhost": "Database Host"}
+"dbhost": "Database Host",
+"admin": ["Admins ID"]}

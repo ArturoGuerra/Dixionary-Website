@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include ../../partials/head %>
+        <title>Servers - Dixionary Bot</title>
+    </head>
+    <body>
+        <%- include ../../partials/header %>
+        <%- include ../../partials/smallhero/start %>
+        <div class="columns is-vcentered">
+             <div class='column'>
+                 <article class="media">
+                     <figure class='media-left'>
+                         <p class="image is-64X64">
+                         <img src="<%= guild.iconURL %>">
+                         </p>
+                     </figure>
+                     <div class="media-content is-vcentered">
+                         <div class='content'>
+                             <p><h1 class='title'><strong><%= guild.name %></strong></h1></p>
+                     </div>
+                 </article>
+             </div>
+             <% if (locals.admin && locals.inwite) { %>
+             <div class="column is-pulled-right has-text-right">
+                 <a target="_blank" class="button is-success" href="<%= inwite %>">Inwite</a>
+                </div>
+             </div>
+             <% } %>
+        </div>
+        <%- include ../../partials/smallhero/end %>
+        <section class="hero hero-body">
+            <div class="container has-test-centered notification">
+                <div class="columns">
+                    <div class="column">
+                        <div class="content has-text-centered">
+                            <p class="subtitle is-3"><%= guild.defaultChannel.name %></h1>
+                            <p class="title">Default Channel</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="content has-text-centered">
+                            <p class="subtitle is-3"><%= shard %></p>
+                            <p class="title">Shard</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class='content has-text-centered'>
+                            <p class="subtitle is-3"><%= guild.memberCount %></p>
+                            <p class="title">Madarchod Count</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class='content has-text-centered'>
+                            <p class="subtitle is-3"><%= guild.verificationLevel %></p>
+                            <p class="title">Werification Lewel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <%- include ../../partials/footer %>
+    </body>
+</html>

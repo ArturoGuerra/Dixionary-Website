@@ -10,6 +10,30 @@
         <h1 class="title">Dixionary API Docs</h1>
         <h2 class="subtitle">#MAKEAMERICAGREATAGAIN</h2>
         <%- include ../partials/hero/end %>
+        <section class="hero hero-body light-dark">
+            <div class='container'>
+                <h1 class='title'>Python Example</h1>
+                <div class="container notification">
+                    <p class='content'>
+                    import requests<br>
+                    r = request.push('http://api.dixionary.com/api/get', json={"message": "what"})<br>
+                    print(r)<br>
+                    print(r.json())
+                    </p>
+                </div>
+                <br>
+                <h1 class='title'>NodeJS Example</h1>
+                <div class='container notification'>
+                    <p class='content'>
+                    const requestify = require('requestify');<br>
+                    requestify.post('http://api.dixionary.com/api/get', {message: "what"}).then(result => {<br>
+                    console.log(result.getBody());<br>
+                    }).catch(console.error);
+                    </p>
+                </div>
+                <br>
+            </div>
+        </section>
         <%- include ../partials/footer %>
     </body>
 </html>

@@ -45,7 +45,7 @@ router.post('/translate', (req, res, next) => {
     .catch(console.log);
 });
 
-router.post('/search', (req, res, next) => {
+router.use('/search', (req, res, next) => {
     cache.route();
     var indexs = 0;
     try {

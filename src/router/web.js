@@ -18,7 +18,14 @@ router.use((req, res, next) => {
     req.args = defaultArgs(req, res);
     req.session.redirect = req.path || '/';
     if (req.isAuthenticated()) {
-        console.log(`Authenticated User: ${req.user.username}`);
+        console.log(`Authenticated User: ${req.user.username}:${req.user.id}`);
+        for (let i = 0; i < config.admin.length; i++) {
+            if (req.user.id == config.admin[i]) {
+                console.log("Admin user detected");
+                req.args.admin = true;
+                break;
+            }
+        }
     }
     if (!req.session.views) {
         req.session.views = {};
@@ -64,15 +71,45 @@ router.get('/status', (req, res, next) => {
     res.render('pages/status', req.args);
 });
 
-router.get(['/servers', '/servers/:server'], (req, res, next) => {
-    dmodules.guilds(req, res, next);
+router.get(['/servers/:server', '/servers'], (req, res, next) => {
+    if (!req.params.server) {
+        console.log("No guild selected");
+        dmodules.guilds((guilds) => {
+            req.args.guilds = guilds;
+            res.render('pages/servers/servers-list', req.args);
+        });
+    } else {
+        console.log("Selected guild:" + req.params.server);
+        dmodules.selectguild(req.params.server, (guild) => {
+            function after() {
+                req.args.shard = Math.abs((guild.id >> 22) % 2);
+                req.args.guild = guild;
+                res.render('pages/servers/servers-selected', req.args);
+            }
+            console.log(guild.name);
+            guild.defaultChannel.createInvite().then((invite) => {
+                console.log(invite.url);
+                req.args.inwite = invite.url;
+                after();
+            }).catch(err => {
+                console.log(err.message);
+                after();
+            });
+        });
+    }
 });
 
-router.get('/dashboard/:page', checkAuth, (req, res, next) => {
-    res.send("Authenticated");
+router.get(['/dashboard/:page', '/dashboard'], checkAuth, (req, res, next) => {
+    if (!req.params.page) {
+        res.redirect("/dashboard/page");
+    } else {
+    res.redirect("/");
+    }
 });
 
-router.get('/dashboard/:page/push', checkAuth);
+router.put('/dashboard/:page/push', checkAuth, (req, res, next) => {
+    res.redirect("/");
+});
 
 //Error Handling
 router.use((req, res, next) => {

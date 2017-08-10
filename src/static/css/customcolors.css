@@ -1,0 +1,7 @@
+.light-dark {
+    background: #66696a; /* Old Browsers */
+    background: -webkit-radial-gradient(top right,#66696a,#7d8c8c); /*Safari 5.1-6*/
+    background: -o-radial-gradient(top right,#66696a,#7d8c8c); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(top right,#66696a,#7d8c8c); /*Fx 3.6-15*/
+    background: radial-gradient(top right, #66696a, #7d8c8c); /*Standard*/
+}
