@@ -10,6 +10,28 @@
         <h1 class="title">Dixionary Status Page</h1>
         <h2 class="subtitle">#WEAREALVAYSDOVN</h2>
         <%- include ../partials/hero/end %>
+        <section class='hero hero-body'>
+            <div class='container notification is-success'>
+                <div class='columns'>
+                    <div class='column has-text-centered'>
+                        <h1 class="title">Dixionary Bot</h1>
+                        <% results.forEach(function(item) { %>
+                        <% if (item.description == "bot") { %>
+                        <div>Status: <strong><%= item.status %></strong></div>
+                        <% if (item.sharded == "true") { %>
+                        <div>Shard: <strong><%= item.shard %></strong></div>
+                        <% }}}) %>
+                    </div>
+                    <div class='column has-text-centered'>
+                        <h1 class="title">Dixionary API</h1>
+                        <% results.forEach(function(item) { %>
+                        <% if (item.description == "api") { %>
+                        <div>Status: <strong><%= item.status %></strong></div>
+                        <% }}) %>
+                   </div>
+                </div>
+            </div>
+        </section>
         <%- include ../partials/footer %>
     </body>
 </html>

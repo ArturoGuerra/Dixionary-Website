@@ -5,6 +5,7 @@ const dixionary = require('../dixionaryweb.js');
 const config = dixionary.config;
 const oauth = require('./auth.js');
 const dmodules = require('../modules/discordapp.js');
+const apimodules = require('../modules/apistatus.js');
 
 //Router middleware
 const scope = [
@@ -67,8 +68,12 @@ router.get('/apinfo', checkAuth, (req, res, next) => {
     res.render('pages/apinfo', req.args);
 });
 
-router.get('/status', (req, res, next) => {
-    res.render('pages/status', req.args);
+router.get('/status', checkAuth, (req, res, next) => {
+    apimodules.statusapi(results => {
+        req.args.results = results;
+        console.log("Got status results");
+        res.render('pages/status', req.args);
+    })
 });
 
 router.get(['/servers/:server', '/servers'], (req, res, next) => {
