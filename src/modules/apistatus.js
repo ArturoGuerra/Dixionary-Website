@@ -1,7 +1,7 @@
 const requestify = require('requestify');
 
 exports.statusapi = function(callback) {
-    var apis = ['http://lundmar.arturonet.com:8080/status', 'http://anodevps.arturonet.com:8080/status', 'http://api.dixionary.com/api/status'];
+    var apis = ['http://lundmar.arturonet.com:8080/status', 'http://anodevps.arturonet.com:8080/status', 'https://api.dixionary.com/api/status'];
     var indexs = 0;
     var results = [];
     apis.forEach((api, index, array) => {
