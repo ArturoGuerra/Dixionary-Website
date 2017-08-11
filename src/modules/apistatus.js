@@ -10,21 +10,28 @@ exports.statusapi = function(callback) {
             timeout: 1000
         }).then(result => {
             results.push(result.getBody());
-            console.log(result.getBody());
             indexs++;
+            statusapiCallback(indexs, array, results, callback);
         }).catch(err => {
             console.log(err);
+            result = {};
+            result.status = 'down';
+            result.description = 'error';
+            results.push(result);
             indexs++;
-            r = {};
-            r.status = 'down';
-            r.description = 'error';
-            results.push(r);
+            statusapiCallback(indexs, array, result, callback);
         });
     });
-    setTimeout(function() {
-        console.log("Sending payload...");
-        callback(results);
-    }, 3001);
+//    setTimeout(function() {
+//        console.log("Sending payload...");
+//        callback(results);
+//    }, 3001);
 }
 
-
+function statusapiCallback(index, array, result, callback) {
+    console.log(index);
+    if (index == array.length) {
+        console.log("Sending payload...");
+        callback(result);
+    }
+}

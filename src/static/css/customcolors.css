@@ -5,3 +5,19 @@
     background: -moz-radial-gradient(top right,#66696a,#7d8c8c); /*Fx 3.6-15*/
     background: radial-gradient(top right, #66696a, #7d8c8c); /*Standard*/
 }
+
+.light-blue-gradient {
+    background: #d1ffff; /* Old Browsers */
+    background: -webkit-radial-gradient(bottom right,#d1ffff,#e5f3f3); /*Safari 5.1-6*/
+    background: -o-radial-gradient(bottom right,#d1ffff,#e5f3f3); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(bottom right,#d1ffff,#e5f3f3); /*Fx 3.6-15*/
+    background: radial-gradient(bottom right, #d1ffff, #e5f3f3); /*Standard*/
+}
+
+.black-gradient-1 {
+    background: #677171; /* Old Browsers */
+    background: -webkit-radial-gradient(top left,#677171,#5c5858); /*Safari 5.1-6*/
+    background: -o-radial-gradient(top left,#677171,#5c5858); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(top left,#677171,#5c5858); /*Fx 3.6-15*/
+    background: radial-gradient(top left, #677171, #5c5858); /*Standard*/
+}

@@ -12,7 +12,7 @@ const ratelimit = new RateLimit({
 //router.use(ratelimit);
 router.get('/fetch', (req, res, next) => {
     cache.route();
-    requestify.get('http://api.dixionary.com/api/fetch').then(result => {
+    requestify.get('https://api.dixionary.com/api/fetch').then(result => {
         var body = JSON.parse(result.body);
         res.json(body);
      });
@@ -23,11 +23,14 @@ router.post('/translate', (req, res, next) => {
     var indexs = 0;
     try {
         var original = req.body.message.split(' ');
+        var message = req.body.message;
         console.log(original);
     } catch (e) {
+        var original = [];
+        var message = '';
         res.status(400).send("400 Bad Request");
     }
-    requestify.post('http://api.dixionary.com/api/get', {message: req.body.message}).then((result, indexs, array) => {
+    requestify.post('https://api.dixionary.com/api/get', {message: message}).then((result) => {
         var corrected = JSON.parse(result.body);
         var string = [];
         for (let x=0; x < original.length; x++) {
