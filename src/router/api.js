@@ -28,6 +28,7 @@ router.post('/translate', (req, res, next) => {
     } catch (e) {
         var original = [];
         var message = '';
+        console.log("400 Bad Request");
         res.status(400).send("400 Bad Request");
     }
     requestify.post('https://api.dixionary.com/api/get', {message: message}).then((result) => {
@@ -55,17 +56,18 @@ router.use('/search', (req, res, next) => {
         var original = req.body.message.split(' ')[0];
         console.log(original);
     } catch (err) {
+        console.log("POST Error");
         res.status(400).send(err.message);
     }
     requestify.request("https://mashape-community-urban-dictionary.p.mashape.com/define?term=" + original, {
         method: 'GET',
         headers: {
-            "X-Mashape-Key": "ag4I5ZUGstmshdijUSKIyrfQ9rG8p1GlEYnjsng2XYtDfJGDFw",
+            "X-Mashape-Key": "PFA4HpfHnzmshqcPZF7ysL0xrGEEp17tCGdjsnpB6g9E6Dcaqy",
             "Accept": "text/plain"
         }
     }).then(responce => {
-        let definition = responce.getBody().list[0].definition;
-        console.log(`Definition: ${definition}`);
+        var definition = responce.getBody().list[0].definition;
+        console.log("Definition:" + definition);
         requestify.post('https://www.dixionary.com/api/translate', {message: definition}).then(result => {
             let body = JSON.parse(result.body);
             let message = body.join(' ').replace(/'/g, "");
@@ -74,7 +76,10 @@ router.use('/search', (req, res, next) => {
         }).catch(err => {
             res.status(400).send(err.message)
         });
-    }).catch(err => {res.status(400).send(err.message)});
+    }).catch(err => {
+        console.log(err.message);
+        res.status(400).send("400 Bad Request")
+    });
 });
 
 

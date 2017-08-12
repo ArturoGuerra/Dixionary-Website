@@ -22,10 +22,6 @@ exports.statusapi = function(callback) {
             statusapiCallback(indexs, array, result, callback);
         });
     });
-//    setTimeout(function() {
-//        console.log("Sending payload...");
-//        callback(results);
-//    }, 3001);
 }
 
 function statusapiCallback(index, array, result, callback) {

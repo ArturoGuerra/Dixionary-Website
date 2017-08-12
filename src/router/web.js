@@ -70,10 +70,23 @@ router.get('/apinfo', checkAuth, (req, res, next) => {
 
 router.get('/status', checkAuth, (req, res, next) => {
     apimodules.statusapi(results => {
-        req.args.results = results;
-        console.log("Got status results");
-        res.render('pages/status', req.args);
-    })
+        req.args.bot = [];
+        req.args.api = [];
+        req.args.errors = [];
+        results.forEach((result, index, array) => {
+            if (result.description === "bot") {
+                req.args.bot.push(result);
+            } else if (result.description === "api") {
+                req.args.api.push(result);
+            } else if (result.description === "error") {
+                req.args.errors.push(result);
+            }
+            if (index === (array.length - 1)) {
+                console.log("Got status results");
+                res.render('pages/status', req.args);
+            }
+        });
+    });
 });
 
 router.get(['/servers/:server', '/servers'], (req, res, next) => {

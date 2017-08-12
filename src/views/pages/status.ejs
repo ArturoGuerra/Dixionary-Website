@@ -14,29 +14,43 @@
                 <div class='container box has-text-centered'>
                     <div class='columns'>
                         <div class='column'>
+                            <% if (bot.length !== 0) { %>
                             <h1 class="title">Dixionary Bot</h1>
                             <br>
-                            <% results.forEach(function(item) { %>
-                            <% if (item.description == "bot") { %>
+                            <% bot.forEach(function(item) { %>
                             <div>
                             <% if (item.sharded == "true") { %>
                             Shard: <strong><%= item.shard %></strong>
                             <% } %>
                             <span class="tag is-success"><%= item.status %></span>
                             </div>
-                            <% }}) %>
+                            <% })} else { %>
+                            <h1 class="title">Dixionary Bot</h1>
+                            <span class="tag is-danger">All Shards Dovn</span>
+                            <% } %>
                         </div>
                         <div class='column'>
+                            <% if (api.length !== 0) { %>
                             <h1 class="title">Dixionary API</h1>
                             <br>
-                            <% results.forEach(function(item) { %>
-                            <% if (item.description == "api") { %>
+                            <% api.forEach(function(item) { %>
                             <div><span class="tag is-success"><%= item.status %></span></div>
-                            <% }}) %>
+                            <% })} else { %>
+                            <h1 class="title">Dixionary API</h1>
+                            <span class="tag is-danger">API DOVN</span>
+                            <% } %>
                         </div>
+                        <% if (errors.length !== 0) { %>
+                        <div class="column">
+                            <h1 class="title">Errors Detected</h1>
+                            <br>
+                            <div>
+                                <span class="tag is-danger"><%= errors.length %> Errors</span>
+                            </div>
+                        </div>
+                        <% } %>
                     </div>
                 </div>
-            </div>
         </section>
         <%- include ../partials/footer %>
     </body>
