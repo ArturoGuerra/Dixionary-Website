@@ -12,14 +12,25 @@
         <%- include ../partials/hero/end %>
         <section class="hero hero-body">
             <div class='container'>
+                <h1 class='title'>Python Example <span class="tag is-info">2.7</span></h1>
+                <hr>
+                <div class="container notification">
+                    <p class='content'>
+                    import requests<br>
+                    request = request.push('https://api.dixionary.com/api/get', json={"message": "what"})<br>
+                    print request<br>
+                    print request.json()
+                    </p>
+                </div>
+                <br>
                 <h1 class='title'>Python Example <span class="tag is-info">3.4 > 3.6</span></h1>
                 <hr>
                 <div class="container notification">
                     <p class='content'>
                     import requests<br>
-                    r = request.push('http://api.dixionary.com/api/get', json={"message": "what"})<br>
-                    print(r)<br>
-                    print(r.json())
+                    request = request.push('https://api.dixionary.com/api/get', json={"message": "what"})<br>
+                    print(request)<br>
+                    print(request.json())
                     </p>
                 </div>
                 <br>
@@ -28,7 +39,7 @@
                 <div class='container notification'>
                     <p class='content'>
                     const requestify = require('requestify');<br>
-                    requestify.post('http://api.dixionary.com/api/get', {message: "what"}).then(result => {<br>
+                    requestify.post('https://api.dixionary.com/api/get', {message: "what"}).then(result => {<br>
                     console.log(result.getBody());<br>
                     }).catch(console.error);
                     </p>

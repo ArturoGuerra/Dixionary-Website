@@ -4,7 +4,7 @@ const DiscordS = require('passport-discord').Strategy;
 const dixionary = require('../dixionaryweb.js');
 const config = dixionary.config;
 //const redirectUri = "http://aws.arturonet.com:8080/login/callback"
-const redirectUri = "https://www.dixionary.com/login/callback"
+const redirectUri = "https://vvv.dixionary.com/login/callback"
 
 passport.serializeUser(function(user, callback) {
     callback(null, user);
