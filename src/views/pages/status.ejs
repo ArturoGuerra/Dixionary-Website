@@ -19,10 +19,14 @@
                             <br>
                             <% bot.forEach(function(item) { %>
                             <div>
-                            <% if (item.sharded == "true") { %>
+                            <% if (item.sharded == true) { %>
                             Shard: <strong><%= item.shard %></strong>
                             <% } %>
+                            <% if (item.status == "operational") { %>
                             <span class="tag is-success"><%= item.status %></span>
+                            <% } else if (item.status == "down") { %>
+                            <span class="tag is-danger"><%= item.status %></span>
+                            <% } %>
                             </div>
                             <% })} else { %>
                             <h1 class="title">Dixionary Bot</h1>
@@ -34,21 +38,16 @@
                             <h1 class="title">Dixionary API</h1>
                             <br>
                             <% api.forEach(function(item) { %>
-                            <div><span class="tag is-success"><%= item.status %></span></div>
+                            <% if (item.status == "operational") { %>
+                            <span class="tag is-success"><%= item.status %></span>
+                            <% } else if (item.status == "down") { %>
+                            <span class="tag is-danger"><%= item.status %></span>
+                            <% } %>
                             <% })} else { %>
                             <h1 class="title">Dixionary API</h1>
                             <span class="tag is-danger">API DOVN</span>
                             <% } %>
                         </div>
-                        <% if (errors.length !== 0) { %>
-                        <div class="column">
-                            <h1 class="title">Errors Detected</h1>
-                            <br>
-                            <div>
-                                <span class="tag is-danger"><%= errors.length %> Errors</span>
-                            </div>
-                        </div>
-                        <% } %>
                     </div>
                 </div>
         </section>

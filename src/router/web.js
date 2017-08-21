@@ -72,14 +72,11 @@ router.get('/status', checkAuth, (req, res, next) => {
     apimodules.statusapi(results => {
         req.args.bot = [];
         req.args.api = [];
-        req.args.errors = [];
         results.forEach((result, index, array) => {
-            if (result.description === "bot") {
+            if (result.type === "bot") {
                 req.args.bot.push(result);
-            } else if (result.description === "api") {
+            } else if (result.type === "api") {
                 req.args.api.push(result);
-            } else if (result.description === "error") {
-                req.args.errors.push(result);
             }
             if (index === (array.length - 1)) {
                 console.log("Got status results");
