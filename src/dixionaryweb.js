@@ -31,11 +31,19 @@ app.use('/', dixionaryweb);
 
 function startServer() {
     // Creates unix socket
+    var socketFile = path.join(__dirname, "dixionaryweb.sock");
+    fs.unlink(socketFile, (err) => {
+        if (err) {
+            console.log("Socket file doesn't exist");
+        } else {
+            console.log("Deleted socket file");
+        }
+    });
     var server = http.createServer(app);
-    server.listen("./dixionaryweb.sock");
+    server.listen(socketFile);
     server.on('listening', onListening);
     function onListening() {
-        fs.chmodSync('./dixionaryweb.sock', '775');
+        fs.chmodSync(socketFile, '775');
         console.log("Started unix socked");
     };
     // Deletes socket file

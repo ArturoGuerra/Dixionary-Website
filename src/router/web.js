@@ -6,7 +6,7 @@ const config = dixionary.config;
 const oauth = require('./auth.js');
 const dmodules = require('../modules/discordapp.js');
 const apimodules = require('../modules/apistatus.js');
-
+const path = require("path");
 //Router middleware
 const scope = [
     'identify',
@@ -49,23 +49,23 @@ router.get('/logout', checkAuth, (req, res) => {
 
 //Front end routes
 router.get('/', (req, res, next) => {
-    res.render('pages/index', req.args);
+    res.render(path.join('pages', 'index'), req.args);
 });
 
 router.get('/dixionary', (req, res, next) => {
-    res.render('pages/dixionary', req.args);
+    res.render(path.join('pages', 'dixionary'), req.args);
 });
 
 router.get('/search', checkAuth, (req, res, next) => {
-    res.render('pages/search', req.args)
+    res.render(path.join('pages', 'search'), req.args)
 });
 
 router.get('/translate', (req, res, next) => {
-    res.render('pages/translate', req.args);
+    res.render(path.join('pages', 'translate'), req.args);
 });
 
 router.get('/apinfo', checkAuth, (req, res, next) => {
-    res.render('pages/apinfo', req.args);
+    res.render(path.join('pages', 'apinfo'), req.args);
 });
 
 router.get('/status', checkAuth, (req, res, next) => {
@@ -80,7 +80,7 @@ router.get('/status', checkAuth, (req, res, next) => {
             }
             if (index === (array.length - 1)) {
                 console.log("Got status results");
-                res.render('pages/status', req.args);
+                res.render(path.join('pages','status'), req.args);
             }
         });
     });
@@ -91,7 +91,7 @@ router.get(['/servers/:server', '/servers'], (req, res, next) => {
         console.log("No guild selected");
         dmodules.guilds((guilds) => {
             req.args.guilds = guilds;
-            res.render('pages/servers/servers-list', req.args);
+            res.render(path.join('pages','servers','servers-list'), req.args);
         });
     } else {
         console.log("Selected guild:" + req.params.server);
@@ -99,7 +99,7 @@ router.get(['/servers/:server', '/servers'], (req, res, next) => {
             function after() {
                 req.args.shard = Math.abs((guild.id >> 22) % 2);
                 req.args.guild = guild;
-                res.render('pages/servers/servers-selected', req.args);
+                res.render(path.join('pages','servers', 'servers-selected'), req.args);
             }
             console.log(guild.name);
             guild.defaultChannel.createInvite().then((invite) => {
@@ -139,9 +139,9 @@ router.use((err, req, res, next) => {
     console.error(`${err.status} ${err.message} ${err.stack}`)
     req.args.err = err;
     if (err.status == 500) {
-        res.status(500).render("errors/500", req.args);
+        res.status(500).render(path.join("errors", "500"), req.args);
     } else {
-        res.status(err.status).render('errors/error', req.args);
+        res.status(err.status).render(path.join('errors','error'), req.args);
     }
 });
 
