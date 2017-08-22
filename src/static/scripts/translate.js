@@ -3,7 +3,7 @@ function translateText() {
     etoggle.setAttribute("style", "display:none;")
     var element = document.getElementById("textInput");
     var request = new XMLHttpRequest();
-    var URL = "https://www.dixionary.com/api/translate";
+    var URL = "https://vvv.dixionary.com/api/translate";
     request.onreadystatechange = function() {
             let responce = JSON.parse(request.responseText);
             console.log(responce);

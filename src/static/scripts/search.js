@@ -4,7 +4,7 @@ function defineText() {
     etoggle.setAttribute("style", "display:none;")
     var element = document.getElementById("textInput");
     var request = new XMLHttpRequest();
-    var URL = "https://www.dixionary.com/api/search";
+    var URL = "https://vvv.dixionary.com/api/search";
     request.onreadystatechange = function() {
             let responce = request.responseText;
             console.log(responce);

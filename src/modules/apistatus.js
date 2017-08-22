@@ -46,5 +46,3 @@ function statusapiCallback(index, array, response, callback) {
 function TestCallback(result) {
     console.log(result)
 }
-
-exports.statusapi(TestCallback);

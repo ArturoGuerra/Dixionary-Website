@@ -1,6 +1,6 @@
 function fetchProjects() {
     var request = new XMLHttpRequest();
-    var URL = "https://www.dixionary.com/api/fetch";
+    var URL = "https://vvv.dixionary.com/api/fetch";
     var indexs = 0;
     request.overrideMimeType("application/json");
     request.open("GET", URL, true);
