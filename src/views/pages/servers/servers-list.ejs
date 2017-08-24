@@ -16,8 +16,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Owner</th>
-                            <th>Members</th>
-                            <th>Region</th>
+                            <th class='is-hidden-touch'>Members</th>
+                            <th class='is-hidden-touch'>Region</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,8 +25,8 @@
                         <tr>
                             <th><a href="/servers/<%= guild.id %>"><%= guild.name %></a></th>
                             <th><%= guild.owner %></th>
-                            <th><%= guild.members %></th>
-                            <th><%= guild.region %></th>
+                            <th class='is-hidden-touch'><%= guild.members %></th>
+                            <th class='is-hidden-touch'><%= guild.region %></th>
                         </tr>
                         <% }) %>
                     </tbody>

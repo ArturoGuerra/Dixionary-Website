@@ -32,7 +32,7 @@ router.use((req, res, next) => {
         req.session.views = {};
     }
     req.session.views[req.path] = (req.session.views[req.path] || 0) + 1;
-    console.log(`${req.session.views[req.path]} ${req.path}`);
+    console.log(`${req.session.views[req.path]} ${req.path} ${req.headers['x-real-ip']}`);
     next()
 });
 
