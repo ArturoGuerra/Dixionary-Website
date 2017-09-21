@@ -1,7 +1,7 @@
 const requestify = require("requestify");
 var endpoints = [
-{url: "http://lundmar.arturonet.com:8080/status", type: "bot", sharded: true, shard: 1},
-{url: "http://kamino.arturonet.com:8080/status", type: "bot", sharded: true, shard: 0},
+{url: "http://lundmar.arturonet.com:8090/status", type: "bot", sharded: true, shard: 1},
+{url: "http://kamino.arturonet.com:8090/status", type: "bot", sharded: true, shard: 0},
 {url: "https://api.dixionary.com/api/status", type: "api"}
 ];
 exports.statusapi = (callback) => {
