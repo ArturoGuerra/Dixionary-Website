@@ -60,6 +60,7 @@ export default {
   },
   methods: {
     getdixionary () {
+      this.$Progress.start()
       axios.get('https://api.dixionary.com/api/fetch', {
         params: {
           index: this.index
@@ -67,6 +68,7 @@ export default {
       })
         .then(response => {
           this.dixionary = response.data
+          this.$Progress.finish()
         })
         .catch(console.error)
     },

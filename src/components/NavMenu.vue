@@ -11,9 +11,16 @@
               <span></span>
             </div>
         </div>
-        <div class="navbar-menu" id='navmenu'>
+        <div class="is-hidden-desktop navbar-menu" id='navmenu'>
             <div class="navbar-start">
-              <router-link v-for='item in navitems' :id='item.id' :key='item.id' :to='item.href' class='navbar-item is-tab' @click.native="fixMobile" exact>
+              <router-link v-for='item in navitems' :id='item.id' :key='item.id' :to='item.href' class='navbar-item' exact>
+                <span>{{ item.content }}</span>
+              </router-link>
+            </div>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+              <router-link v-for='item in navitems' :id='item.id' :key='item.id' :to='item.href' class='navbar-item is-tab' exact>
                 <span>{{ item.content }}</span>
               </router-link>
             </div>
@@ -48,6 +55,7 @@ export default {
     },
     fixMobile () {
       this.$nextTick(() => {
+        console.log(document.getElementById('navmenu').className.split(' ').length === 2)
         if (document.getElementById('navmenu').className.split(' ').length === 2) {
           var navitems = document.getElementsByClassName('navbar-item')
           Array.prototype.filter.call(navitems, (f) => {

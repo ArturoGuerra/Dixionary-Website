@@ -23,13 +23,17 @@ const router = new Router({
       path: '/dixionary',
       name: 'Dixionary',
       component: Dixionary,
-      meta: { requiresAuth: true }
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/translate',
       name: 'Translate',
       component: Translate,
-      meta: { requiresAuth: true }
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/apinfo',
