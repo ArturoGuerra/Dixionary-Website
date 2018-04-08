@@ -41,6 +41,18 @@ export default {
         {href: '/apinfo', id: 'apinfo', content: 'API Info'}
       ]
     }
+  },
+  methods: {
+    toggleNav () {
+      document.getElementById('navtoggle').classList.toggle('is-active')
+      document.getElementById('navmenu').classList.toggle('is-active')
+      if (document.getElementById('navmenu').className.split(' ').length === 2) {
+        var navitems = document.getElementsByClassName('navbar-item')
+        Array.prototype.filter.call(navitems, (f) => {
+          f.className = 'navbar-item'
+        })
+      }
+    }
   }
 }
 </script>
