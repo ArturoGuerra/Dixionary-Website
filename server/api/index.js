@@ -21,7 +21,6 @@ router.use('/fetch', (req, res, next) => {
   }
   requestify.get(url).then(result => {
     var body = JSON.parse(result.body);
-    console.log(body)
     res.json(body);
    }).catch(console.error)
 });
