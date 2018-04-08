@@ -43,11 +43,11 @@ export default {
   methods: {
     async translateText () {
       try {
-        const result = this.$axios.$post(
+        const result = await this.$axios.$post(
           '/translate',
           { message: this.einput }
         )
-        this.translated = result.data.join(' ')
+        this.translated = result.join(' ')
       } catch (err) {
         console.log(err)
       }
