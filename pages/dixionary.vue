@@ -40,8 +40,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'Dixionary',
   head: {
@@ -55,31 +53,31 @@ export default {
     }
   },
   methods: {
-    getdixionary () {
-      this.$nextTick(() => {
-        this.$nuxt.$loading.start()
-        axios.get('https://vvv.dixionary.com/api/fetch', {
-          params: {
-            index: this.index
+    async getdixionary () {
+      this.$nuxt.$loading.start()
+      try {
+        let result = await this.$axios.$get(
+          '/fetch',
+          {
+            params: { index: this.index }
           }
-        })
-          .then(response => {
-            this.dixionary = response.data
-            this.$nuxt.$loading.finish()
-          })
-          .catch(console.error)
-      })
+        )
+        this.dixionary = result
+        this.$nuxt.$loading.finish()
+      } catch (err) {
+        this.$nuxt.$loading.$fail()
+      }
     },
-    decrease () {
+    async decrease () {
       if (this.index === 0) return
       this.index -= 1
-      this.getdixionary()
+      await this.getdixionary()
       this.$nuxt.$forceUpdate()
     },
-    increase () {
+    async increase () {
       if (this.dixionary.length < 20) return
       this.index += 1
-      this.getdixionary()
+      await this.getdixionary()
       this.$nuxt.$forceUpdate()
     }
   },
