@@ -1,4 +1,4 @@
-# dixionaryvue
+# dixionary website
 
 > Nuxt.js project
 
