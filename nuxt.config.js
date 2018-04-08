@@ -108,5 +108,10 @@ module.exports = {
   },
   modules: [
     ['@nuxtjs/pwa'],
-  ]
+    '@nuxtjs/axios'
+  ],
+  axios: {
+    baseURL: 'https://vvv.dixionary.com',
+    browserBaseURL: '/api'
+  }
 }

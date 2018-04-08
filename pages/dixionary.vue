@@ -58,7 +58,7 @@ export default {
     getdixionary () {
       this.$nextTick(() => {
         this.$nuxt.$loading.start()
-        axios.get('https://api.dixionary.com/api/fetch', {
+        axios.get('https://vvv.dixionary.com/api/fetch', {
           params: {
             index: this.index
           }
