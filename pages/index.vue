@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hero is-dark is-medium blue-gradient-1">
+    <div class="hero is-dark is-medium blue-gradient-1 particlesjs">
       <particles></particles>
       <div class="hero-body wow lightSpeedIn">
         <div class="container has-text-centered">
