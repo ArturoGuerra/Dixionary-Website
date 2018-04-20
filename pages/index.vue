@@ -1,15 +1,15 @@
 <template>
   <div>
-    <section class="particlesjs hero is-dark is-medium blue-gradient-1">
+    <div class="hero is-dark is-medium blue-gradient-1">
       <particles></particles>
-      <div class="hero-body">
+      <div class="hero-body wow lightSpeedIn">
         <div class="container has-text-centered">
           <h1 class="title">Dixionary Website</h1>
           <h2 class="subtitle">Vill correct each & eweryone</h2>
           <h3>Global varming is a hoax</h3>
         </div>
       </div>
-    </section>
+    </div>
      <section class="section">
         <div class="container notification">
             <h1 class="title">Scammer Language</h1>
@@ -39,6 +39,9 @@ export default {
   name: 'Home',
   head: {
     title: 'Home'
+  },
+  mounted () {
+    if (process.browser) { this.$nuxt.$wow.sync() }
   }
 }
 </script>

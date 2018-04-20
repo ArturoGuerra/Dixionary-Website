@@ -1,15 +1,13 @@
 <template>
   <div>
-    <section class="hero is-primary blue-gradient-opacity-50 particlesjs">
+    <section class="hero is-primary blue-gradient-opacity-50 particlesjs wow">
       <particles></particles>
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title wow lightSpeedIn">Dixionary Translate</h1>
-        </div>
+      <div class="hero-body wow lightSpeedIn">
+        <h1 class="title">Dixionary Translate</h1>
       </div>
     </section>
     <section class="hero hero-body">
-      <br>
+      <br/>
       <h3 class="title">Scammer Translate</h3>
       <div class="field has-addons">
         <div class="control is-expanded">
@@ -21,7 +19,7 @@
           </a>
         </div>
       </div>
-      <br>
+      <br/>
       <p v-if="translated">
       Result: {{ translated }}
       </p>
@@ -40,6 +38,9 @@ export default {
       einput: null,
       translated: null
     }
+  },
+  mounted () {
+    if (process.browser) { this.$nuxt.$wow.sync() }
   },
   methods: {
     async translateText () {

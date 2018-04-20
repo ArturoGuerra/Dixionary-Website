@@ -2,7 +2,7 @@
   <div>
     <section class="hero is-dark is-medium blue-gradient-1 particlesjs">
         <particles></particles>
-        <div class="hero-body">
+        <div class="hero-body wow lightSpeedIn">
           <div class="container has-text-centered">
             <h1 class="title">Dixionary API Docs</h1>
             <h2 class="subtitle">#MAKEAMERICAGREATAGAIN</h2>
@@ -54,6 +54,9 @@ export default {
   name: 'ApiInfo',
   head: {
     title: 'ApiInfo'
+  },
+  mounted () {
+    if (process.browser) { this.$nuxt.$wow.sync() }
   }
 }
 </script>

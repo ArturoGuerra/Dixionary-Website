@@ -2,7 +2,7 @@
   <div>
     <section class="hero is-dark is-medium blue-gradient-1 particlesjs">
       <particles></particles>
-      <div class="hero-body">
+      <div class="hero-body wow lightSpeedIn">
         <div class="container has-text-centered">
           <h1 class=title>Dixonary List</h1>
           <h2 class=subtitle>Each & Ewery vord in the dixionary</h2>
@@ -83,6 +83,7 @@ export default {
     }
   },
   mounted () {
+    if (process.browser) { this.$nuxt.$wow.sync() }
     this.$nextTick(() => { this.getdixionary() })
   }
 }
