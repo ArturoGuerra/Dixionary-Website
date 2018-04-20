@@ -71,10 +71,12 @@ module.exports = {
 
   css: [
     '~/assets/css/bulma.css',
+    'colors.css/css/colors.min.css',
     '~/assets/css/animate.css',
     '~/assets/css/bodystyling.css',
     '~/assets/css/colors.css',
     '~/assets/css/hero.css',
+    '~/assets/css/particles.css'
   ],
 
   /*
@@ -88,6 +90,8 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
+    vender: ['axios', 'wowjs'],
     /*
     ** Run ESLint on save
     */
@@ -106,6 +110,10 @@ module.exports = {
     linkActiveClass: 'is-active',
     linkExactActiveClass: 'is-active'
   },
+  plugins: [
+    { src: '~/plugins/particles.js', ssr: false },
+    { src: '~/plugins/wow.js', ssr: false }
+  ],
   modules: [
     ['@nuxtjs/pwa'],
     '@nuxtjs/axios'
@@ -113,5 +121,8 @@ module.exports = {
   axios: {
     baseURL: 'https://vvv.dixionary.com',
     browserBaseURL: '/api'
+  },
+  render: {
+    http2: true
   }
 }

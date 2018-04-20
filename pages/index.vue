@@ -1,6 +1,7 @@
 <template>
   <div>
-    <section class="hero is-dark is-medium blue-gradient-1">
+    <section class="particlesjs hero is-dark is-medium blue-gradient-1">
+      <particles></particles>
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title">Dixionary Website</h1>

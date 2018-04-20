@@ -1,9 +1,10 @@
 <template>
   <div>
-    <section class="hero is-primary blue-gradient-opacity-50">
+    <section class="hero is-primary blue-gradient-opacity-50 particlesjs">
+      <particles></particles>
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Dixionary Translate</h1>
+          <h1 class="title wow lightSpeedIn">Dixionary Translate</h1>
         </div>
       </div>
     </section>
