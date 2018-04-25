@@ -1,6 +1,6 @@
-import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
 import bodyParser from 'body-parser'
+import express from 'express'
 import morgan from 'morgan'
 import http from 'http'
 import fs from 'fs'
@@ -9,7 +9,7 @@ import api from './api'
 
 const app = new express()
 const httpServer = http.createServer(app)
-const host = process.env.HOST || '127.0.0.1'
+const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || 3000
 const socket = process.env.SOCKET || null
 

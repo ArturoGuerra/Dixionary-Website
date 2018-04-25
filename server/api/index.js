@@ -54,6 +54,6 @@ router.use('/translate', (req, res, next) => {
         res.json(string);
     })
     .catch(console.log);
-});
+})
 
-export default router
+module.exports = router
