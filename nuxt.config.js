@@ -119,8 +119,8 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   axios: {
-    baseURL: 'https://vvv.dixionary.com',
-    browserBaseURL: '/api'
+    baseURL: 'https://api.dixionary.com',
+    browserBaseURL: 'https://api.dixionary.com/api'
   },
   render: {
     http2: true

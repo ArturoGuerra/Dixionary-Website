@@ -5,8 +5,6 @@ import morgan from 'morgan'
 import http from 'http'
 import fs from 'fs'
 
-import api from './api'
-
 const app = new express()
 const httpServer = http.createServer(app)
 const host = process.env.HOST || '0.0.0.0'
@@ -36,8 +34,7 @@ if (!config.dev) {
 
 app.use(morgan('short'))
 app.use(bodyParser.json())
-// Import API Routes
-app.use('/api', api)
+
 // Give nuxt middleware to express
 app.use(nuxt.render)
 
