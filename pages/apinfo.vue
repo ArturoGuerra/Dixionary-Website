@@ -16,7 +16,7 @@
       <div class="container notification">
         <p class='content'>
         import requests<br>
-        request = request.push('https://api.dixionary.com/api/get', json={"message": "what"})<br>
+        request = request.get('https://api.dixionary.com/api/get?message=what)<br>
         print request<br>
         print request.json()
         </p>
@@ -27,7 +27,7 @@
       <div class="container notification">
         <p class='content'>
         import requests<br>
-        request = request.push('https://api.dixionary.com/api/get', json={"message": "what"})<br>
+        request = request.get('https://api.dixionary.com/api/get?message=what)<br>
         print(request)<br>
         print(request.json())
         </p>
@@ -38,7 +38,7 @@
       <div class='container notification'>
         <p class='content'>
         const requestify = require('requestify');<br>
-        requestify.post('https://api.dixionary.com/api/get', {message: "what"}).then(result => {<br>
+        requestify.get('https://api.dixionary.com/api/get?message=what).then(result => {<br>
         console.log(result.getBody());<br>
         }).catch(console.error);
         </p>
