@@ -36,7 +36,6 @@ export default {
       user: null,
       navitems: [
         {href: '/', id: 'Home', content: 'Home'},
-        {href: '/dixionary', id: 'dixionary', content: 'Dixionary'},
         {href: '/translate', id: 'translate', content: 'Translate'},
         {href: '/apinfo', id: 'apinfo', content: 'API Info'}
       ]
